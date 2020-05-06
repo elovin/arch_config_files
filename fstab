@@ -1,0 +1,15 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/mapper/vayu--arch-root 							data flags on root can only be set as kernel params e.g. with your bootloader GRUB_CMDLINE_LINUX_DEFAULT="quiet splash root‐flags=data=journal"
+UUID=f77c3bfa-f9e7-48d3-8af9-9fecc7d25c4c	/         	ext4      	rw,relatime,nodelalloc	0 1
+
+# /dev/mapper/vayu--arch-home
+UUID=a15798fb-0a5a-40e6-8c9f-f130d79c6ae2	/home     	ext4      	rw,relatime,nodelalloc	0 2
+
+# /dev/nvme0n1p1
+UUID=85CB-5779      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+
+#swap
+UUID=2f843067-6900-47f7-a4b0-2368a1361d50	none	swap	sw	0 0
