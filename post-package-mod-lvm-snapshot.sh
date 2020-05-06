@@ -10,3 +10,8 @@ then
 		lvremove --yes "/dev/vayu-arch/backup_$number"
 	done
 fi
+
+for backup_volume_name in $(lvs | grep "backup_*" | grep "100.00" | awk '{print $1}')
+do 
+	lvremove --yes "/dev/vayu-arch/$backup_volume_name"
+done
