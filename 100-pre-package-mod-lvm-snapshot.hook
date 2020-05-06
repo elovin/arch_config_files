@@ -1,0 +1,13 @@
+# hook to create a lvm snapshot before running pacman -Syu
+
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = *
+
+[Action]
+Description = creating lvm snapshot of root partition
+When = PreTransaction
+Exec = /usr/share/libalpm/scripts/pre-package-mod-lvm-snapshot.sh
