@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export LVM_SUPPRESS_FD_WARNINGS=1
+
 number_of_current_backups="$(lvs --all | awk '{print $1}' | grep 'backup_*' | wc -l)"
 
 
