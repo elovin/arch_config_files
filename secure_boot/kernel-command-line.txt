@@ -1,0 +1,1 @@
+quiet cryptdevice=UUID=f990839d-9874-4fb3-8e3c-19d6d9f5b87c:cryptlvm:allow-discards root=/dev/mapper/vayu--arch-root rw

@@ -1,0 +1,10 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Operation = Install
+Target = systemd
+
+[Action]
+Description = Signing systemd-boot
+When = PostTransaction
+Exec = /root/secure_boot/sign_systemd_boot.sh

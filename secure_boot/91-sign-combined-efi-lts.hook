@@ -1,0 +1,16 @@
+# alpm hooks are interpreted in alphabetical order so a prefix with 9 runs last 
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Path
+Target = usr/lib/systemd/boot/efi/linuxx64.efi.stub
+Target = boot/initramfs-linux-lts.img
+Target = usr/lib/modules/*/vmlinuz
+Target = boot/intel-ucode.img
+Target = boot/vmlinuz-linux-lts
+
+[Action]
+Description = Creating signed combined efi image 
+When = PostTransaction
+Exec = /root/secure_boot/sign_combined_efi.sh vmlinuz-linux-lts initramfs-linux-lts.img intel-ucode.img
+NeedsTargets
