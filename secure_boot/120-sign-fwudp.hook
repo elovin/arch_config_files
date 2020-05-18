@@ -1,0 +1,11 @@
+[Trigger]
+Type = Path
+Operation = Upgrade
+Operation = Install
+Target = usr/lib/fwupd/efi/fwupdx64.efi
+
+[Action]
+Description = Signing fwupd efi file
+When = PostTransaction
+Exec = /root/secure_boot/sign_fwupd.sh
+Depends = sbsigntools
