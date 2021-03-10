@@ -6,16 +6,21 @@
 ##
 ## See the sudoers man page for the details on how to write a sudoers file.
 ##
-# reset environment by default
-Defaults      env_reset
-# Set default EDITOR to vim and do not allow visudo to use EDITOR/VISUAL.rds),
-Defaults editor=/usr/bin/vim, !env_editor
+
 ##
 ## Host alias specification
 ##
 ## Groups of machines. These may include host names (optionally with wildcards),
 ## IP addresses, network numbers or netgroups.
 # Host_Alias	WEBSERVERS = www1, www2, www3
+
+
+# Reset environment by default
+Defaults      env_reset
+# Set default EDITOR to nano, and do not allow visudo to use EDITOR/VISUAL.
+Defaults      editor=/usr/bin/vim, !env_editor
+
+Defaults timestamp_timeout=7
 
 ##
 ## User alias specification
@@ -80,8 +85,7 @@ Defaults editor=/usr/bin/vim, !env_editor
 ## User privilege specification
 ##
 root ALL=(ALL) ALL
-lbecker ALL=(ALL) PASSWD: ALL, NOPASSWD: /usr/bin/systemctl suspend, /usr/bin/pacman -Ss *, /usr/bin/pacman -Fy, /usr/bin/boltctl list, /usr/bin/pacman -Fs *, /usr/bin/cpupower frequency-set -g performance, /usr/bin/cpupower frequency-set -g powersave, /usr/bin/pkgfile -u, /usr/bin/fdisk -l
-
+elovin ALL=(ALL) PASSWD: ALL, NOPASSWD: /usr/bin/mount /home/elovin/big-gamelib, /usr/bin/mount /home/elovin/bigger-gamelib, /usr/bin/cpupower frequency-set -g performance, /usr/bin/cpupower frequency-set -g powersave
 ## Uncomment to allow members of group wheel to execute any command
 # %wheel ALL=(ALL) ALL
 
@@ -97,5 +101,4 @@ lbecker ALL=(ALL) PASSWD: ALL, NOPASSWD: /usr/bin/systemctl suspend, /usr/bin/pa
 # ALL ALL=(ALL) ALL  # WARNING: only use this together with 'Defaults targetpw'
 
 ## Read drop-in files from /etc/sudoers.d
-## (the '#' here does not indicate a comment)
-#includedir /etc/sudoers.d
+@includedir /etc/sudoers.d

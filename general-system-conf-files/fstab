@@ -1,0 +1,21 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme0n1p2 LABEL=/root
+UUID=bef0806a-747a-47fa-b694-d1bee4b72d8f       /               btrfs           rw,relatime,ssd,space_cache,subvolid=5,subvol=/ 0 0
+
+# /dev/nvme0n1p1
+UUID=5B94-C122          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
+
+# /dev/nvme0n1p3 LABEL=/var
+UUID=e7990fbc-133f-487c-8de0-1ea43d4e682f       /var            ext4            rw,relatime     0 2
+
+# /dev/mapper/crypt-home
+UUID=463a5122-9156-4eda-b0ed-9171fbe63b19       /home           ext4            rw,relatime,noauto,nodelalloc   0 2
+
+# /home/elovin/big-gamelib
+UUID=4eb5d2d6-2375-4593-b49f-0fc119e464d1       /home/elovin/big-gamelib        ext4    rw,relatime,noauto      0 2
+
+# /home/elovin/bigger-gamelib
+UUID=a9f2d495-7a57-48b3-aebb-9f9682197db1       /home/elovin/bigger-gamelib     ext4    rw,relatime,noauto      0 2
