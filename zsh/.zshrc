@@ -136,5 +136,60 @@ setopt COMPLETE_ALIASES
 alias min-power="sudo /usr/bin/cpupower frequency-set -g powersave"
 alias max-power="sudo /usr/bin/cpupower frequency-set -g performance"
 
+# https://dev.to/meleu/how-to-join-array-elements-in-a-bash-script-303a
+join_by() { local IFS="${1}"; shift; echo "${*}"; }
+
+rm() {
+	local invalidFlagPattern='^-[fiI]+'
+	local args=()
+	local fileOrDirToRemove
+	local command
+
+	for param in "${@}"
+	do
+		if [[ $param != -* ]]
+		then
+			fileOrDirToRemove="${param}"
+			continue
+		fi
+
+		if [[ $param =~ ${invalidFlagPattern} ]] || [[ $param == "--force" ]]
+		then
+			continue
+		fi
+
+		if [[ $param == -*f* ]]
+		then
+			param="$(echo ${param//f})"
+		fi
+
+		if [[ $param == -*i* ]]
+		then
+			param="$(echo ${param//i})"
+		fi
+
+		if [[ $param == -*I* ]]
+		then
+			param="$(echo ${param//I})"
+		fi
+
+		args+=($param)
+	done
+
+	
+	if [[ -d ${fileOrDirToRemove}  ]]
+	then
+		command="/usr/bin/rm -I $(join_by ' ' "${args}") ${fileOrDirToRemove}"
+	elif [[ -f ${fileOrDirToRemove} ]]
+	then
+		command="/usr/bin/rm -i $(join_by ' ' "${args}") ${fileOrDirToRemove}"
+	else
+	    	echo "${fileOrDirToRemove} no valid file or directory"
+		return 1
+	fi
+
+	zsh -c "${command}"
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
