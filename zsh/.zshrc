@@ -136,6 +136,19 @@ setopt COMPLETE_ALIASES
 alias min-power="sudo /usr/bin/cpupower frequency-set -g powersave"
 alias max-power="sudo /usr/bin/cpupower frequency-set -g performance"
 
+alias uu="yay && flatpak update"
+alias unlockme="faillock --reset --user ${USER}"
+
+alias steam-mesa-git="FLATPAK_GL_DRIVERS=mesa-git flatpak run com.valvesoftware.Steam"
+
+alias update-aurora-services="echo 'accept on your phone if necessary!' && sudo adb root shell && sudo adb shell mount -o remount,rw / && sudo adb push ~/Downloads/AuroraServices_v1.1.1.apk /system/priv-app && sudo adb push ~/Downloads/permissions_com.aurora.services.xml /system/etc/permissions/"
+
+export VAGRANT_DEFAULT_PROVIDER=libvirt
+
+#alias update-dxvk="(cd ~/Documents/dxvk-tools && ./updxvk build && ./upvkd3d-proton build && ./updxvk lutris && ./upvkd3d-proton lutris)"
+
+alias cpu-mhz='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
+
 # https://dev.to/meleu/how-to-join-array-elements-in-a-bash-script-303a
 join_by() { local IFS="${1}"; shift; echo "${*}"; }
 
@@ -193,3 +206,5 @@ rm() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
